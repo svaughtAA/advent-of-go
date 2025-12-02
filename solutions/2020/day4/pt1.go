@@ -2,7 +2,7 @@ package day4
 
 import (
 	"advent-of-go/utils"
-	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -79,7 +79,5 @@ func pt1(input string) (string, error) {
 			valid++
 		}
 	}
-	fmt.Printf("num valid %d \n", valid)
-	return "", fmt.Errorf("not implemented")
-	// return strconv.Itoa(valid), nil
+	return strconv.Itoa(valid), nil
 }

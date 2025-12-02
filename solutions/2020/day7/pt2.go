@@ -2,7 +2,6 @@ package day7
 
 import (
 	"advent-of-go/utils"
-	"fmt"
 	"strconv"
 )
 
@@ -33,6 +32,5 @@ func CountBags(bag string, rules map[string]([]string)) int {
 func pt2(input string) (string, error) {
 	tree := ParseInput(input)
 	result := CountBags("shiny gold", tree)
-	fmt.Printf("result %v\n", result)
 	return strconv.Itoa(result), nil
 }

@@ -2,7 +2,6 @@ package day4
 
 import (
 	"advent-of-go/utils"
-	"fmt"
 	"regexp"
 	"strconv"
 )
@@ -104,6 +103,5 @@ func pt2(input string) (string, error) {
 			valid++
 		}
 	}
-	fmt.Printf("num valid %d \n", valid)
 	return strconv.Itoa(valid), nil
 }

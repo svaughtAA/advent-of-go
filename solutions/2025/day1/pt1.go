@@ -2,7 +2,6 @@ package day1
 
 import (
 	"advent-of-go/utils"
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -52,6 +51,5 @@ func pt1(input string) (string, error) {
 	for _, r := range rotations {
 		d.RotateCountingRestZeros(r)
 	}
-	fmt.Printf("count: %d\n", d.count)
 	return strconv.Itoa(d.count), nil
 }

@@ -2,7 +2,6 @@ package day5
 
 import (
 	"advent-of-go/utils"
-	"fmt"
 	"strconv"
 )
 
@@ -28,6 +27,5 @@ func pt2(input string) (string, error) {
 			mySeat = i
 		}
 	}
-	fmt.Printf("result %d", mySeat)
 	return strconv.Itoa(mySeat), nil
 }

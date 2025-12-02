@@ -2,7 +2,6 @@ package day6
 
 import (
 	"advent-of-go/utils"
-	"fmt"
 	"strconv"
 )
 
@@ -37,6 +36,5 @@ func pt2(input string) (string, error) {
 	for _, ga := range gal {
 		sum += len(ga.GetQuestionsWithOnlyYes())
 	}
-	fmt.Printf("sum %d\n", sum)
 	return strconv.Itoa(sum), nil
 }

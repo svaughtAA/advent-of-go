@@ -2,7 +2,6 @@ package day2
 
 import (
 	"advent-of-go/utils"
-	"fmt"
 	"strconv"
 )
 
@@ -41,6 +40,5 @@ func pt2(input string) (string, error) {
 			}
 		}
 	}
-	fmt.Printf("sum %v\n", sum)
 	return strconv.Itoa(sum), nil
 }

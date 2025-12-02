@@ -2,7 +2,6 @@ package day5
 
 import (
 	"advent-of-go/utils"
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -66,6 +65,5 @@ func pt1(input string) (string, error) {
 		row, col := bp.FindRow(), bp.FindCol()
 		max = utils.Max(max, row*8+col)
 	}
-	fmt.Printf("max %d\n", max)
 	return strconv.Itoa(max), nil
 }

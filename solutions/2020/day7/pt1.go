@@ -2,7 +2,6 @@ package day7
 
 import (
 	"advent-of-go/utils"
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -68,6 +67,5 @@ func pt1(input string) (string, error) {
 			count++
 		}
 	}
-	fmt.Printf("count %v\n", count)
 	return strconv.Itoa(count), nil
 }

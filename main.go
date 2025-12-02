@@ -22,12 +22,12 @@ func main() {
 	flag.Parse()
 
 	if e := processNowFlag(y, d, n); e != nil {
-		fmt.Printf("%v\n", e)
+		PrintError(fmt.Sprintf("%v\n", e))
 		return
 	}
 
 	if e := runInit(); e != nil {
-		fmt.Printf("Error initializing: %v\n", e)
+		PrintError(fmt.Sprintf("Error initializing: %v\n", e))
 		return
 	}
 
@@ -43,12 +43,12 @@ func main() {
 	}
 	filteredSolutions := getFilteredSolutions(solutions, y, d, p)
 	if len(filteredSolutions) == 0 {
-		println("No solutions found matching your criteria! Perhaps your filter is too strict. (Are you using incorrect -y -d -p -n flags?)")
+		fmt.Println("No solutions found matching your criteria! Perhaps your filter is too strict. (Are you using incorrect -y -d -p -n flags?)")
 		return
 	}
 
 	if ok := generation.AllInput(solutions); !ok {
-		fmt.Printf("Finished pulling input with errors!\n")
+		fmt.Println("Finished pulling input with errors!")
 	}
 
 	// standard print command if no other flags are set
@@ -86,13 +86,13 @@ func handleSubmission(y, d, p *int, solutions []utils.Solution) {
 		return
 	}
 	if len(solutions) != 1 {
-		fmt.Printf("Error: expected exactly one solution to submit, but found %d\n", len(solutions))
+		PrintError(fmt.Sprintf("Error: expected exactly one solution to submit, but found %d\n", len(solutions)))
 		return
 	}
 	solution := solutions[0]
 	msg, e := generation.Submit(*y, *d, *p, solution)
 	if e != nil {
-		fmt.Printf("Error submitting solution: %v\n", e)
+		PrintError(fmt.Sprintf("Error submitting solution: %v\n", e))
 		return
 	}
 	fmt.Printf("%s Response: %s\n", solution.Name(), msg)
@@ -100,19 +100,19 @@ func handleSubmission(y, d, p *int, solutions []utils.Solution) {
 
 func handleTesting(solutions []utils.Solution, q *bool) {
 	if ok, e := generation.AllAnswers(solutions); e != nil {
-		fmt.Printf("Error retrieving answers: %v\n", e)
+		PrintError(fmt.Sprintf("Error retrieving answers:v", e))
 		return
 	} else if !ok {
-		fmt.Printf("Finished pulling answers with errors!\n")
+		PrintError("Finished pulling answers with errors!")
 	}
 	passed, failed := 0, 0
 	for _, r := range testSolutions(solutions) {
 		if r.err != nil {
-			fmt.Printf("[FAIL] - %s: %v\n", r.solution.Name(), r.err)
+			PrintError(fmt.Sprintf("[FAIL] - %s: %v", r.solution.Name(), r.err))
 			failed++
 		} else {
 			if !*q {
-				fmt.Printf("[PASS] - %s\n", r.solution.Name())
+				PrintSuccess(fmt.Sprintf("[PASS] - %s", r.solution.Name()))
 			}
 			passed++
 		}
@@ -122,13 +122,13 @@ func handleTesting(solutions []utils.Solution, q *bool) {
 
 func handleGeneration(y, d *int) {
 	if *y == -1 || *d == -1 {
-		fmt.Println("Error: -g flag requires -y and -d flags to be set (or -n)")
+		PrintError("Error: -g flag requires -y and -d flags to be set (or -n)")
 	} else {
 		if e := generation.Generate(*y, *d); e != nil {
-			fmt.Printf("Error generating solution: %v\n", e)
+			PrintError(fmt.Sprintf("Error generating solution: %v\n", e))
 			return
 		}
-		fmt.Printf("Successfully generated solution for year %d day %d\n", *y, *d)
+		PrintSuccess(fmt.Sprintf("Successfully generated solution for year %d day %d\n", *y, *d))
 	}
 }
 
