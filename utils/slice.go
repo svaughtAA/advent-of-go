@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"math"
 	"slices"
 )
@@ -13,6 +14,17 @@ func Unique[T comparable](s []T) []T {
 		}
 	}
 	return res
+}
+
+func Remove[T any](s []T, index int) []T {
+	fmt.Printf("Removing index %d from slice of len %d\n", index, len(s))
+	return append(s[:index], s[index+1:]...)
+	// if index == 0 {
+	// 	return s[1:]
+	// }
+	// if index == len(s)-1 {
+	// 	return s[:len(s)-1]
+	// }
 }
 
 func SliceMax(xs []int) int {

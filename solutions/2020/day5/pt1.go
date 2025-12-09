@@ -60,10 +60,10 @@ func (bp BoardingPass) FindCol() int {
 
 func pt1(input string) (string, error) {
 	bps := ParseInput(input)
-	max := 0
+	highest := 0
 	for _, bp := range bps {
 		row, col := bp.FindRow(), bp.FindCol()
-		max = utils.Max(max, row*8+col)
+		highest = max(highest, row*8+col)
 	}
-	return strconv.Itoa(max), nil
+	return strconv.Itoa(highest), nil
 }
